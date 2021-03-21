@@ -1,0 +1,156 @@
+
+JAS: Java Algebra System
+========================
+
+Version 2.7, 2021
+
+by Heinz Kredel, University of Mannheim, kredel at rz.uni-mannheim.de
+
+Copyright (c) 2000-2021 by Heinz Kredel.
+
+Programms released under GPL or LGPL, see COPYING.jas or COPYING.lgpl.jas.
+
+Web home-page: http://krum.rz.uni-mannheim.de/jas/
+
+
+Requirements
+------------
+
+A Java JDK 1.11.
+
+Documentation see index.html.
+
+Required libraries are log4j-core-2.13.2.jar, log4j-api-2.13.2.jar
+(from Apache Log4j2, or mylog.jar, droidlog.jar) 
+and junit-4.12.jar, hamcrest-core-1.3.jar (from Junit for tests in trc) 
+
+
+Usage
+-----
+
+> java  -cp {other_jar_files}:jas-<version>-bin.jar:. <sample class>
+
+for example
+> java -cp ../lib/log4j-core-2.13.2.jar:../lib/log4j-api-2.13.2.jar:jas-2.6.5428-bin.jar edu.jas.application.RunGB seq examples/trinks7.jas
+
+or
+
+> jruby examples/<some input file>.rb
+
+or
+
+> jas examples/<some input file>.rb 
+
+for example
+> ./jas examples/all_rings.rb
+
+or
+
+> jython examples/<some input file>.py 
+
+or
+
+> jas -py examples/<some input file>.py
+
+
+The shell script "jas" figures out the Java, jruby, jython and JAS 
+environment and runs the respective scripting interpreter. See 
+>  man -l doc/jas.1
+for more information. 
+
+Compilation of your own Java files using the JAS library can be done 
+with the "javac" command.
+
+> javac -cp {other_jar_files}:jas-<version>-bin.jar:. <your sample code>
+
+
+
+Versions and jar files
+----------------------
+
+JAS is distributed in 3 jar files:
+
+jas-<version>-bin.jar:    the Java class files 
+jas-<version>-src.zip:    the java source code
+jas-<version>-doc.zip:    the Java doc, epydoc, jrdoc and more info files
+
+
+optional jar files which require further installed packages:
+
+jas-meditor.jar:          the interface to meditor
+jas-jython.jar:           an interface for Java scripting
+jas-mpj.jar:              MPI Java depending code
+mylog.jar:                a substitute for log4j to use Java logging
+droidlog.jar:             a substitute for log4j to use Android logging
+jlinalg_adapter.jar:      an adaptor to parts of JLinAlg
+commons-math_adapter.jar: an adaptor to parts of Apache commons.math
+
+
+pre packaged JAS versions:
+
+jas-java_<version>-all.deb  a Debian (wheezy) package usable in MathLibre
+ruboto-irb-jas-release.apk  an Android App based on Ruboto
+
+
+There are GIT repositories for the scource code, which can be cloned with
+
+> git clone http://krum.rz.uni-mannheim.de/jas.git jas
+or
+> git clone https://github.com/kredel/java-algebra-system.git jas
+
+
+There is a Maven compatible repository for bytecode, source and javadocs at
+
+  https://oss.sonatype.org/
+
+groupId: edu.jas, artifactId: jas, version (for example): 2.6.5675
+
+
+The version is specified by a two digit major.minor number and a
+revision number. The revision number was the subversion revision
+number, but with git it is just a consecutive number. For example in
+
+jas-2.5.5380-bin.jar
+
+"2.5"  is the JAS version number and
+"5380" is the subversion revision number
+
+The jas-*-bin.jar and jas-*-doc.jar can be generated from jas-*-src.jar.
+The fastest way to get a complete JAS install, is 
+
+> jar -xf jas-<version>-src.zip
+> cd <JAS version number>
+> jar -xf jas-<version>-bin.jar
+> jar -xf jas-<version>-doc.zip
+
+If you have a working Ant with Ivy, the last two steps can be replaced by
+
+> ant resolve
+> ant compile
+> ant doc
+
+provided you have setup build.xml, ivy.xml for the required libraries.
+
+
+Directory structure
+-------------------
+
+.          main directory, entry to html documentation
++doc       html documentation, javadocs, jython docs, jruby docs
++edu       Java class files
++examples  examples for jython, jruby and jas
++images    images for html docs
++jython    JSR 233 scripting interface
++meditor   JSR 233 scripting interface for meditor
++mpj       MPI Java versions of distributed Groebner bases
++mpi       OpenMPI Java versions of distributed Groebner bases
++jlinalg_adaper some adapter classes to JLinAlg
++commons-math_adaper some adapter classes to Apache Commons Math3
++src       source code
++trc       junit test sources
++test      junit test output and log4j output
+
+../lib     directory for required libraries, not included
+
+
+$Id$

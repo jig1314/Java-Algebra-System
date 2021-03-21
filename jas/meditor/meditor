@@ -1,0 +1,25 @@
+#!/bin/bash
+# script to call meditor with the jas engine
+#
+# $Id$
+
+LIBPATH=~/java/lib
+MEDITORPATH=~/java/meditor3.0
+JASPATH=..
+
+#UTILS=$LIBPATH/jython.jar:$LIBPATH/log4j.jar
+UTILS=~/java/jython2.7.0/jython.jar:$LIBPATH/log4j.jar
+
+JAS=$JASPATH/jas.jar:jas-meditor.jar
+
+if [[ ! -f "jas.py" ]]; then
+  jar xf jas-meditor.jar jas.py
+fi
+
+MEDITOR=$MEDITORPATH/meditor.jar:$MEDITORPATH/lib/jscl.jar
+
+CLASSPATH=$UTILS:$JAS:$MEDITOR:.:..
+
+mkdir -p test
+#####-Dpython.home=$JASPATH/examples 
+java -classpath $CLASSPATH -Duser.home=$JASPATH/examples jscl.editor.Editor

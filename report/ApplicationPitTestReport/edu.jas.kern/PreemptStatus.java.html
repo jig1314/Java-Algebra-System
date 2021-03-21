@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>PreemptStatus.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * $Id$</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.jas.kern;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * PreemptStatus, defines global status for preemptive interruption handling.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Heinz Kredel</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class PreemptStatus {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Global status flag.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static boolean allowPreempt = true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * No public constructor.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    protected PreemptStatus() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * isAllowed.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return true, preemtive interruption is allowed, else false.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAllowed() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_34'/>
+34
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_34'>2</a>
+<span>
+
+1. isAllowed : replaced boolean return with false for edu/jas/kern/PreemptStatus::isAllowed &rarr; SURVIVED<br/>
+
+2. isAllowed : replaced boolean return with true for edu/jas/kern/PreemptStatus::isAllowed &rarr; TIMED_OUT<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return allowPreempt;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * setAllow, set preemtive interruption to allowed status.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static void setAllow() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        allowPreempt = true;</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * setNotAllow, set preemtive interruption to not allowed status.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static void setNotAllow() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        allowPreempt = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@5e058227_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@5e058227_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@5e058227_34'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAllowed<br/><b>Killed by : </b>none</span></span> replaced boolean return with false for edu/jas/kern/PreemptStatus::isAllowed &rarr; SURVIVED</p> <p class='TIMED_OUT'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAllowed<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for edu/jas/kern/PreemptStatus::isAllowed &rarr; TIMED_OUT</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>NULL_RETURN_VALUES</li>
+
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.jas.application.WordIdealTest.testIntersection(edu.jas.application.WordIdealTest) (11 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionF2(edu.jas.application.ExtensionFieldBuilderTest) (9 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testDistributive(edu.jas.application.LocalSolvablePolynomialQLRTest) (19 ms)</li><li>edu.jas.application.IdealTest.testIdealSum(edu.jas.application.IdealTest) (7 ms)</li><li>edu.jas.application.IdealTest.testRootDecomposition(edu.jas.application.IdealTest) (7 ms)</li><li>edu.jas.application.IdealTest.testComplexRoot(edu.jas.application.IdealTest) (167 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionR1(edu.jas.application.ExtensionFieldBuilderTest) (7 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testConstructor(edu.jas.application.LocalSolvablePolynomialTest) (69 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testSolvableCoeffs(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (118 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testReverseWeyl(edu.jas.application.ResidueSolvableWordPolynomialTest) (6 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testAddition(edu.jas.application.LocalSolvablePolynomialQLRTest) (28 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testDistributive(edu.jas.application.LocalSolvablePolynomialTest) (5 ms)</li><li>edu.jas.application.IdealTest.testIdealComplexRoot(edu.jas.application.IdealTest) (11503 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionF0(edu.jas.application.ExtensionFieldBuilderTest) (20 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testExtendContractWeyl(edu.jas.application.ResidueSolvableWordPolynomialTest) (16 ms)</li><li>edu.jas.application.RealAlgebraicTest.testAddition(edu.jas.application.RealAlgebraicTest) (8 ms)</li><li>edu.jas.application.FactorRealRealTest.testRealRealAlgebraicFactorization(edu.jas.application.FactorRealRealTest) (15 ms)</li><li>edu.jas.application.FactorAlgebraicPrimTest.testAlgebraicFactorization(edu.jas.application.FactorAlgebraicPrimTest) (2342 ms)</li><li>edu.jas.application.SolvableLocalTest.testParse(edu.jas.application.SolvableLocalTest) (2 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalMore(edu.jas.application.GBAlgorithmBuilderTest) (3 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealRadicalMember(edu.jas.application.SolvableIdealTest) (1 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testDistributive(edu.jas.application.ResidueSolvableWordPolynomialTest) (54 ms)</li><li>edu.jas.application.ResidueTest.testConstruction(edu.jas.application.ResidueTest) (2 ms)</li><li>edu.jas.application.ResidueTest.testMultiplication(edu.jas.application.ResidueTest) (25 ms)</li><li>edu.jas.application.IdealTest.testPrimeDecomposition(edu.jas.application.IdealTest) (18 ms)</li><li>edu.jas.application.WordIdealTest.testWordIdealCommonZeros(edu.jas.application.WordIdealTest) (6 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testConstructor(edu.jas.application.ResidueSolvablePolynomialQLRTest) (9 ms)</li><li>edu.jas.application.SolvableIdealTest.testElimSolvableIdeal(edu.jas.application.SolvableIdealTest) (6 ms)</li><li>edu.jas.application.WordResidueTest.testConstruction(edu.jas.application.WordResidueTest) (5 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testCommutative(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (41 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testMultiplication(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (65 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testAddition(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (135 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testConstructor(edu.jas.application.ResidueSolvablePolynomialTest) (10 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testCommutative(edu.jas.application.LocalSolvablePolynomialQLRTest) (20 ms)</li><li>edu.jas.application.PolyUtilAppTest.testPrimitiveElement(edu.jas.application.PolyUtilAppTest) (4 ms)</li><li>edu.jas.application.SolvableIdealTest.testAnnihilator(edu.jas.application.SolvableIdealTest) (8 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalSignatureBased(edu.jas.application.GBAlgorithmBuilderTest) (6 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testRandom(edu.jas.application.ResidueSolvableWordPolynomialTest) (3 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testRoot(edu.jas.application.SolvableLocalResidueTest) (7 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testDistributive(edu.jas.application.ResidueSolvablePolynomialQLRTest) (6 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testAddition(edu.jas.application.LocalSolvablePolynomialTest) (37 ms)</li><li>edu.jas.application.SolvableIdealTest.testIdealSum(edu.jas.application.SolvableIdealTest) (1 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionM2(edu.jas.application.ExtensionFieldBuilderTest) (3 ms)</li><li>edu.jas.application.SolvableLocalTest.testConstruction(edu.jas.application.SolvableLocalTest) (81 ms)</li><li>edu.jas.application.WordResidueTest.testAddition(edu.jas.application.WordResidueTest) (2 ms)</li><li>edu.jas.application.CGBSeqTest.testTrinks7GBase(edu.jas.application.CGBSeqTest) (890 ms)</li><li>edu.jas.application.ResidueTest.testAddition(edu.jas.application.ResidueTest) (3 ms)</li><li>edu.jas.application.IdealTest.testIdealTopt(edu.jas.application.IdealTest) (1 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalFFParallel(edu.jas.application.GBAlgorithmBuilderTest) (7 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionInteger(edu.jas.application.GBAlgorithmBuilderTest) (48 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRational(edu.jas.application.GBAlgorithmBuilderTest) (1 ms)</li><li>edu.jas.application.ResidueTest.testRandom(edu.jas.application.ResidueTest) (18 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalIterate(edu.jas.application.GBAlgorithmBuilderTest) (5 ms)</li><li>edu.jas.application.WordResidueTest.testRandom(edu.jas.application.WordResidueTest) (5 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testRecursiveWeyl(edu.jas.application.ResidueSolvablePolynomialQLRTest) (7 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testWordCoeffsRelations(edu.jas.application.ResidueSolvableWordPolynomialTest) (54 ms)</li><li>edu.jas.application.LocalTest.testConstruction(edu.jas.application.LocalTest) (2 ms)</li><li>edu.jas.application.IdealTest.testIdealRadicalMember(edu.jas.application.IdealTest) (2 ms)</li><li>edu.jas.application.IdealTest.testRootDecompositionReal(edu.jas.application.IdealTest) (18 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealProduct(edu.jas.application.SolvableIdealTest) (3 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testSolvableCoeffs(edu.jas.application.QuotientSolvablePolynomialQLRTest) (54 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testConstruction(edu.jas.application.SolvableLocalResidueTest) (802 ms)</li><li>edu.jas.application.SolvableLocalTest.testAddition(edu.jas.application.SolvableLocalTest) (3 ms)</li><li>edu.jas.application.SolvableResidueTest.testRandom(edu.jas.application.SolvableResidueTest) (3 ms)</li><li>edu.jas.application.IdealTest.testExtCont(edu.jas.application.IdealTest) (86 ms)</li><li>edu.jas.application.RealAlgebraicTest.testCompare(edu.jas.application.RealAlgebraicTest) (9 ms)</li><li>edu.jas.application.WordResidueTest.testMultiplication(edu.jas.application.WordResidueTest) (2 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testRecursiveWeyl(edu.jas.application.ResidueSolvablePolynomialTest) (43 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testRandom(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (8 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testRandom(edu.jas.application.SolvableLocalResidueTest) (4 ms)</li><li>edu.jas.application.IdealTest.testPrimeDecomp(edu.jas.application.IdealTest) (913 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testSolvableCoeffs(edu.jas.application.LocalSolvablePolynomialTest) (55 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testMultiplication(edu.jas.application.LocalSolvablePolynomialQLRTest) (12 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealInfiniteQuotient(edu.jas.application.SolvableIdealTest) (2 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testReverseWeyl(edu.jas.application.ResidueSolvablePolynomialQLRTest) (3 ms)</li><li>edu.jas.application.RealAlgebraicTest.testDistributive(edu.jas.application.RealAlgebraicTest) (7 ms)</li><li>edu.jas.application.LocalTest.testAddition(edu.jas.application.LocalTest) (11 ms)</li><li>edu.jas.application.IdealTest.testIdealInfiniteQuotient(edu.jas.application.IdealTest) (3 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionF3(edu.jas.application.ExtensionFieldBuilderTest) (18 ms)</li><li>edu.jas.application.SolvableResidueTest.testMultiplication(edu.jas.application.SolvableResidueTest) (2 ms)</li><li>edu.jas.application.PolyUtilAppTest.testPrimitiveElementTower(edu.jas.application.PolyUtilAppTest) (6 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testMultiplication(edu.jas.application.ResidueSolvablePolynomialTest) (16 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testExtendContractWeyl(edu.jas.application.ResidueSolvablePolynomialQLRTest) (3 ms)</li><li>edu.jas.application.IdealTest.testIdealRealRoot(edu.jas.application.IdealTest) (40 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testMultiplication(edu.jas.application.QuotientSolvablePolynomialQLRTest) (5 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testDistributive(edu.jas.application.ResidueSolvablePolynomialTest) (13 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testSolvableCoeffs(edu.jas.application.LocalSolvablePolynomialQLRTest) (68 ms)</li><li>edu.jas.application.FactorTest.testFactory(edu.jas.application.FactorTest) (3 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionIntegerEGB(edu.jas.application.GBAlgorithmBuilderTest) (8 ms)</li><li>edu.jas.application.IdealTest.testIdealQuotient(edu.jas.application.IdealTest) (5 ms)</li><li>edu.jas.application.ComplexRootTest.testPolynomialComplexRoots(edu.jas.application.ComplexRootTest) (4473 ms)</li><li>edu.jas.application.SolvableResidueTest.testConstruction(edu.jas.application.SolvableResidueTest) (2 ms)</li><li>edu.jas.application.RealAlgebraicTest.testConstruction(edu.jas.application.RealAlgebraicTest) (8 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalFGLM(edu.jas.application.GBAlgorithmBuilderTest) (2 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testRandom(edu.jas.application.ResidueSolvablePolynomialTest) (4 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testExamIdeal(edu.jas.application.SolvableLocalResidueTest) (82 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalMoreCompute(edu.jas.application.GBAlgorithmBuilderTest) (994 ms)</li><li>edu.jas.application.IdealTest.testUnivPoly(edu.jas.application.IdealTest) (31 ms)</li><li>edu.jas.application.ComplexRootTest.testComplexRootsRand(edu.jas.application.ComplexRootTest) (285 ms)</li><li>edu.jas.application.IdealTest.testAnnihilator(edu.jas.application.IdealTest) (132 ms)</li><li>edu.jas.application.WordIdealTest.testIdealSum(edu.jas.application.WordIdealTest) (2 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testMultiplication(edu.jas.application.LocalSolvablePolynomialTest) (10 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testAddition(edu.jas.application.ResidueSolvableWordPolynomialTest) (255 ms)</li><li>edu.jas.application.RealAlgebraicTest.testRandom(edu.jas.application.RealAlgebraicTest) (11 ms)</li><li>edu.jas.application.IdealTest.testZeroDimDecomp(edu.jas.application.IdealTest) (25 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testAddition(edu.jas.application.QuotientSolvablePolynomialQLRTest) (323 ms)</li><li>edu.jas.application.WordResidueTest.testDivision(edu.jas.application.WordResidueTest) (5 ms)</li><li>edu.jas.application.LocalTest.testRandom(edu.jas.application.LocalTest) (3 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalParallel(edu.jas.application.GBAlgorithmBuilderTest) (0 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionF1(edu.jas.application.ExtensionFieldBuilderTest) (34 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testConstructor(edu.jas.application.ResidueSolvableWordPolynomialTest) (18 ms)</li><li>edu.jas.application.IdealTest.testIdealDimension(edu.jas.application.IdealTest) (3 ms)</li><li>edu.jas.application.IdealTest.testIdealCommonZeros(edu.jas.application.IdealTest) (2 ms)</li><li>edu.jas.application.IdealTest.testRealRoot(edu.jas.application.IdealTest) (10 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testConstructor(edu.jas.application.LocalSolvablePolynomialQLRTest) (76 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testAddition(edu.jas.application.ResidueSolvablePolynomialTest) (5 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testPartCommutative(edu.jas.application.ResidueSolvablePolynomialQLRTest) (4 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealDimension(edu.jas.application.SolvableIdealTest) (6 ms)</li><li>edu.jas.application.FactorTest.testFactorySpecific(edu.jas.application.FactorTest) (1 ms)</li><li>edu.jas.application.LocalSolvablePolynomialQLRTest.testRandom(edu.jas.application.LocalSolvablePolynomialQLRTest) (14 ms)</li><li>edu.jas.application.HenselMultUtilTest.testDiophantLiftingList(edu.jas.application.HenselMultUtilTest) (140 ms)</li><li>edu.jas.application.SolvableLocalTest.testRandom(edu.jas.application.SolvableLocalTest) (5 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testInverse(edu.jas.application.SolvableLocalResidueTest) (5 ms)</li><li>edu.jas.application.RealAlgebraicTest.testMultiplication(edu.jas.application.RealAlgebraicTest) (12 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealQuotient(edu.jas.application.SolvableIdealTest) (1 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testAddition(edu.jas.application.SolvableLocalResidueTest) (85 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testParse(edu.jas.application.SolvableLocalResidueTest) (1 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testSolvableCoeffsRelations(edu.jas.application.ResidueSolvablePolynomialQLRTest) (23 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testExtendContractWeyl(edu.jas.application.ResidueSolvablePolynomialTest) (3 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testSolvableCoeffsRelations(edu.jas.application.ResidueSolvablePolynomialTest) (108 ms)</li><li>edu.jas.application.IdealTest.testPrimaryDecomp(edu.jas.application.IdealTest) (76 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalParilistCompute(edu.jas.application.GBAlgorithmBuilderTest) (1042 ms)</li><li>edu.jas.application.LocalTest.testMultiplication(edu.jas.application.LocalTest) (4 ms)</li><li>edu.jas.application.HenselMultUtilTest.testDiophantLifting(edu.jas.application.HenselMultUtilTest) (44 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testConstructor(edu.jas.application.QuotientSolvablePolynomialQLRTest) (49 ms)</li><li>edu.jas.application.ResidueSolvableWordPolynomialTest.testMultiplication(edu.jas.application.ResidueSolvableWordPolynomialTest) (6 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testReverseWeyl(edu.jas.application.ResidueSolvablePolynomialTest) (4 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalOptimized(edu.jas.application.GBAlgorithmBuilderTest) (0 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testDistributive(edu.jas.application.QuotientSolvablePolynomialQLRTest) (330 ms)</li><li>edu.jas.application.FactorTest.testFactoryGeneric(edu.jas.application.FactorTest) (2 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testRandom(edu.jas.application.ResidueSolvablePolynomialQLRTest) (2 ms)</li><li>edu.jas.application.IdealTest.testElimIdeal(edu.jas.application.IdealTest) (12 ms)</li><li>edu.jas.application.IdealTest.testIdealProduct(edu.jas.application.IdealTest) (2 ms)</li><li>edu.jas.application.RealAlgebraicTest.testReIm(edu.jas.application.RealAlgebraicTest) (10 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealCommonZeros(edu.jas.application.SolvableIdealTest) (1 ms)</li><li>edu.jas.application.WordIdealTest.testWordIdealProduct(edu.jas.application.WordIdealTest) (7 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testRandom(edu.jas.application.LocalSolvablePolynomialTest) (6 ms)</li><li>edu.jas.application.ReductionTest.testRatPolReduction(edu.jas.application.ReductionTest) (20 ms)</li><li>edu.jas.application.IdealTest.testIdealInfiniteQuotientRabi(edu.jas.application.IdealTest) (2 ms)</li><li>edu.jas.application.RealAlgebraicTest.testSignum(edu.jas.application.RealAlgebraicTest) (14 ms)</li><li>edu.jas.application.SolvableLocalTest.testMultiplication(edu.jas.application.SolvableLocalTest) (3 ms)</li><li>edu.jas.application.LocalSolvablePolynomialTest.testCommutative(edu.jas.application.LocalSolvablePolynomialTest) (20 ms)</li><li>edu.jas.application.SolvableIdealTest.testSolvableIdealInfiniteQuotientRabi(edu.jas.application.SolvableIdealTest) (2 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionM1(edu.jas.application.ExtensionFieldBuilderTest) (12 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testAddition(edu.jas.application.ResidueSolvablePolynomialQLRTest) (18 ms)</li><li>edu.jas.application.SolvableLocalResidueTest.testMultiplication(edu.jas.application.SolvableLocalResidueTest) (15 ms)</li><li>edu.jas.application.SolvableIdealTest.testUnivPoly(edu.jas.application.SolvableIdealTest) (160 ms)</li><li>edu.jas.application.IdealTest.testPrimaryDecomposition(edu.jas.application.IdealTest) (22 ms)</li><li>edu.jas.application.IdealTest.testRadicalDecomp(edu.jas.application.IdealTest) (11 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testRandom(edu.jas.application.QuotientSolvablePolynomialQLRTest) (7 ms)</li><li>edu.jas.application.CGBSeqTest.testSequentialCGB(edu.jas.application.CGBSeqTest) (737 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionR2factory(edu.jas.application.ExtensionFieldBuilderTest) (58 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testConstructor(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (166 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalWalk(edu.jas.application.GBAlgorithmBuilderTest) (4 ms)</li><li>edu.jas.application.IdealTest.testNormalPosition(edu.jas.application.IdealTest) (3 ms)</li><li>edu.jas.application.ExtensionFieldBuilderTest.testConstructionC1(edu.jas.application.ExtensionFieldBuilderTest) (4 ms)</li><li>edu.jas.application.WordIdealTest.testContraction(edu.jas.application.WordIdealTest) (9 ms)</li><li>edu.jas.application.SolvableResidueTest.testAddition(edu.jas.application.SolvableResidueTest) (2 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialTest.testPartCommutative(edu.jas.application.ResidueSolvablePolynomialTest) (11 ms)</li><li>edu.jas.application.ComplexRootTest.testComplexRootsImag(edu.jas.application.ComplexRootTest) (1635 ms)</li><li>edu.jas.application.QuotientSolvablePolynomialQLRTest.testCommutative(edu.jas.application.QuotientSolvablePolynomialQLRTest) (12 ms)</li><li>edu.jas.application.LocalResidueSolvablePolynomialQLRTest.testDistributive(edu.jas.application.LocalResidueSolvablePolynomialQLRTest) (18 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionIntegerDGB(edu.jas.application.GBAlgorithmBuilderTest) (15 ms)</li><li>edu.jas.application.ResidueSolvablePolynomialQLRTest.testMultiplication(edu.jas.application.ResidueSolvablePolynomialQLRTest) (47 ms)</li><li>edu.jas.application.GBAlgorithmBuilderTest.testConstructionRationalFF(edu.jas.application.GBAlgorithmBuilderTest) (1 ms)</li><li>edu.jas.application.IdealTest.testIrredDecomp(edu.jas.application.IdealTest) (14 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.3
+
+</body>
+</html>

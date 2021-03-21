@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<!-- $Id$ -->
+
+<project name="jas" default="usage" basedir="." 
+                    xmlns:jacoco="antlib:org.jacoco.ant"
+                    xmlns:ivy="antlib:org.apache.ivy.ant"
+         >
+  <!-- xmlns:artifact="antlib:org.apache.maven.artifact.ant" -->
+
+  <property name="src"       value="src" />
+  <property name="testsrc"   value="trc" />
+  <property name="mpjsrc"    value="mpj/src" />
+  <property name="mpisrc"    value="mpi/src" />
+  <property name="jysrc"     value="jython/src" />
+  <!--property name="jlinalg"   value="../jas-versions/jlinalg_adapter/edu" /-->
+  <property name="bin"       value="edu" />
+  <property name="build"     value="." />
+  <property name="doc"       value="doc/api" />
+  <property name="texdoc"    value="doc/tex" />
+  <property name="test"      value="test" />
+
+  <property name="libs"      value="${basedir}/../lib" />
+  <!--property name="log4j"     value="${libs}/log4j.jar" /-->
+  <!--property name="log4j"     value="${libs}/mylog.jar" /-->
+  <!--property name="log4j"     value="${libs}/nolog.jar" /-->
+  <!--property name="log4j"     value="${libs}/log4j-1.2.17.jar" /-->
+  <property name="log4j"     value="${libs}/log4j-core-2.13.2.jar:${libs}/log4j-api-2.13.2.jar" />
+  <property name="ACmath"    value="commons-math_adapter-bin.jar:${libs}/commons-math3-3.3.jar" />
+  <!--property name="junit"     value="${libs}/junit-3.8.jar" /-->
+  <property name="junit"     value="${libs}/junit-4.12.jar:${libs}/hamcrest-core-1.3.jar" />
+  <property name="jomp"      value="${libs}/jomp1.0b.jar" />
+  <property name="jython"    value="${libs}/jython.jar" />
+  <property name="meditor"   value="${libs}/meditor.jar" />
+  <property name="tnj"       value="${libs}/tnj.jar" />
+  <property name="tex"       value="${libs}/texgen.jar" />
+  <property name="lint"      value="${libs}/lint4j.jar" />
+  <property name="l4j.level" value="3" />
+  <property name="l4j.exact" value="true" />
+
+  <property name="cp"        value="${log4j}:${junit}:." />
+  <property name="doccp"     value="${log4j}:${junit}" />
+
+  <property name="dist.dir"  value="target" />
+  <property name="ivy-publish.overwrite"  value="true" />
+
+  <property name="dist"      value="../jas-versions/jas-2.7" />
+  <property name="tmpdist"   value="../jas-versions/tmp" />
+  <property name="artifactId" value="jas" />
+  <property name="svnrev"    value="30" />
+  <property name="gitrev"    value="${svnrev}" />
+  <!--property name="version"  value="2.7.${SVNREV}" /--> <!-- set in vorher-->
+
+<!--
+  <taskdef name="lint4j" classname="com.jutils.lint4j.ant.Lint4jAntTask">
+    <classpath>
+      <pathelement location="${lint}"/>
+    </classpath>
+  </taskdef>
+-->
+
+<!--
+  <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="${libs}/jacocoant.jar"/>
+  </taskdef>
+-->
+
+<target name="vorher" >
+  <!-- set properties DSTAMP, TSTAMP -->
+  <tstamp />
+  <mkdir dir="edu/jas"  />
+  <mkdir dir="${test}"  />
+  <mkdir dir="doc"  />
+  <mkdir dir="${tmpdist}"  />
+  <!--exec executable="svnlook" outputproperty="svnrev" >
+   <arg line="youngest /home/SUBVERSION/jas"/>
+  </exec-->
+  <property name="version" value="2.7.${gitrev}" />
+  <!--echo message="artifact version = ${artifactId}-${version}"  /-->
+</target>
+
+<target name="usage" >
+  <echo message="ant compile"  />
+  <echo message="ant run -Dclass=&lt;class&gt; -Dargs='command-line arguments'"  />
+  <echo message="ant resolve # use ivy to retrieve dependency jars"  />
+  <echo message="ant &lt;other-target&gt;"  />
+  <echo message="basedir = ${basedir}"  />
+  <echo message="libs = ${libs}"  />
+  <echo message="java -version = ${ant.java.version}"  />
+  <!--echo message="java.home = ${java.home}"  /-->
+  <!--echoproperties /-->
+</target>
+
+<target name="recompile" depends="vorher,distclean" description="compile after distclean">
+  <javac destdir="${build}"
+         debug="on" debuglevel="lines,source"
+         classpath="${cp}" 
+         includeantruntime="false"
+  >
+     <src path="${src}" />
+     <src path="${testsrc}" />
+     <!--compilerarg value="-Xlint:unchecked" /-->
+     <!--compilerarg value="-Xlint:deprecation" /-->
+  </javac>
+</target>
+
+<target name="compile" depends="vorher" description="compilation of changed sources">
+  <javac destdir="${build}" 
+         debug="on" debuglevel="lines,source"
+         classpath="${cp}"
+         listfiles="true"
+         includeantruntime="false"
+  >
+     <compilerarg value="-Xlint:unchecked" />
+     <!--
+     <compilerarg value="-Xlint:-unchecked" />
+     <compilerarg value="-Xlint:deprecation" />
+     -->
+     <src path="${src}" />
+     <src path="${testsrc}" />
+  </javac>
+</target>
+
+<target name="recomp5" depends="vorher,distclean" >
+  <javac destdir="${build}"
+         debug="on" debuglevel="lines,source"
+         classpath="${cp}" 
+         source="1.5" 
+         target="1.5" 
+         bootclasspath="/usr/lib64/jvm/java-1.5.0/jre/lib/rt.jar"
+         includeantruntime="false"
+  >
+     <src path="${src}" />
+     <src path="${testsrc}" />
+  </javac>
+</target>
+
+<target name="recomp6" depends="vorher,distclean" >
+  <javac destdir="${build}"
+         debug="on" debuglevel="lines,source"
+         classpath="${cp}" 
+         source="1.6" 
+         target="1.6" 
+         bootclasspath="/usr/lib64/jvm/java-1.6.0/jre/lib/rt.jar"
+         includeantruntime="false"
+  >
+     <src path="${src}" />
+     <src path="${testsrc}" />
+  </javac>
+</target>
+
+<target name="recomp7" depends="vorher,distclean" >
+  <javac destdir="${build}"
+         debug="on" debuglevel="lines,source"
+         classpath="${cp}" 
+         source="1.7" 
+         target="1.7" 
+         bootclasspath="/usr/lib64/jvm/java-1.7.0/jre/lib/rt.jar"
+         includeantruntime="false"
+  >
+     <src path="${src}" />
+     <src path="${testsrc}" />
+  </javac>
+</target>
+
+<target name="doc" depends="vorher" description="generate javadoc">
+  <javadoc destdir="${doc}" 
+           classpath="${doccp}" 
+           overview="doc/overview.html" 
+           author="true" 
+           linksource="true" 
+           additionalparam="-Xdoclint:none -html5 --no-module-directories"
+           >
+<!--       
+           private="true" 
+           linksource="true" 
+-->
+     <!--tag name="unused"    description="Not used"         scope="all" /-->
+     <!--tag name="todo"      description="To do"            scope="all" /-->
+     <!--tag name="fix"       description="Fix me"           scope="all" /-->
+     <!--tag name="usage"     description="Usage"            scope="all" /-->
+     <fileset dir="${src}" includes="**/*.java"  />
+     <fileset dir="${testsrc}" includes="**/*.java"  />
+     <!--fileset dir="${mpjsrc}" includes="**/*.java"  /-->
+     <!--fileset dir="${jysrc}" includes="**/*.java"  /-->
+  </javadoc>
+</target>
+
+
+<target name="texdoc" >
+  <javadoc sourcepath="${src}"  destdir="${texdoc}"
+           classpath="${doccp}" 
+           doclet="TexGen"
+           docletpath="${tex}"
+           verbose="true"
+           >
+     <fileset dir="${src}" includes="**/*.java"  />
+  </javadoc>
+</target>
+
+
+<target name="timing" depends="vorher" >
+  <java  classname="edu.jas.poly.PolynomialTimings" 
+         classpath="${cp}" 
+         fork="yes" />
+</target>
+
+<target name="run" depends="compile" description="run -Dclass=c.l.a.s.s -Dargs=a-r-g-s">
+  <java  classname="${class}" 
+         classpath="${cp}" 
+         fork="yes" >
+    <arg line="${args}"/>
+    <!--
+    <jvmarg value="-server"/>
+    <jvmarg value="-verbose:gc"/>
+    <jvmarg value="-Xmx2900M"/>
+    <jvmarg value="-Xms2900M"/>
+    <jvmarg value="-verbose:class"/>
+    <jvmarg value="-Dorg.apache.logging.log4j.simplelog.StatusLogger.level=DEBUG"/>
+    -->
+  </java>
+</target>
+
+<target name="junit"
+        if="class" 
+        depends="compile" >
+  <junit printsummary="yes" 
+         fork="yes" 
+         showoutput="yes"
+         timeout="10000"
+         haltonfailure="no" >
+     <!--
+     <jvmarg value="-server"/>
+     <jvmarg value="-verbose:gc"/>
+     <jvmarg value="-Xmx2900M"/>
+     <jvmarg value="-Xms2900M"/>
+     <jvmarg value="-ea"/>
+     -->
+     <formatter type="plain" /> <!-- plain, xml, brief -->
+     <classpath path="${cp}" />
+     <test name="${class}"
+	   todir="${test}"
+           outfile="TEST-1-${class}" />
+  </junit>
+</target>
+
+<target name="test" 
+        depends="compile" >
+  <junit printsummary="yes" 
+         fork="yes" 
+         showoutput="yes"
+         timeout="20000"
+         haltonfailure="no" >
+     <!--
+     <jvmarg value="-server"/>
+     <jvmarg value="-verbose:gc"/>
+     <jvmarg value="-Xmx2900M"/>
+     <jvmarg value="-Xms2900M"/>
+     <jvmarg value="-ea"/>
+     -->
+     <classpath path="${cp}" />
+     <formatter type="plain" /> <!-- plain, xml, brief -->
+     <batchtest todir="${test}" >
+        <fileset dir="${build}">
+          <include name="edu/**/*Test.class"/>
+        </fileset>
+     </batchtest>
+  </junit>
+</target>
+
+<target name="coverage" 
+        depends="vorher" >
+  <jacoco:coverage>
+  <junit printsummary="yes" 
+         fork="yes" 
+         showoutput="yes"
+         haltonfailure="no" >
+     <classpath path="${cp}" />
+     <formatter type="plain" /> <!-- plain, xml, brief -->
+     <batchtest todir="${test}" >
+        <fileset dir="${build}">
+          <include name="edu/**/*Test.class"/>
+        </fileset>
+     </batchtest>
+  </junit>
+  </jacoco:coverage>
+</target>
+
+<target name="exam" depends="compile" >
+  <java classname="edu.jas.poly.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.vector.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.gbufd.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.ps.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.ps.ExamplesMulti" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.ufd.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.ufd.ExamplesPartialFraction" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.integrate.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.integrate.ExamplesMore" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.application.Examples" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+  <java classname="edu.jas.application.ExamplesGeoTheorems" classpath="${cp}" fork="yes" >
+    <arg line="1" />
+  </java>
+</target>
+
+<target name="lint" depends="vorher" >
+  <lint4j sourcepath="${src}" 
+          classpath="${cp}"
+          packages="edu.jas.*" 
+          level="${l4j.level}" 
+          exact="${l4j.exact}" >
+  </lint4j>
+</target>
+
+<target name="jdepend" depends="vorher" >
+  <jdepend format="text" 
+           outputfile="test/jdepend-report-${DSTAMP}.out" 
+       >
+      <exclude name="java.*" />
+      <exclude name="javax.*" />
+      <exclude name="org.apache.*" />
+      <exclude name="junit.*" />
+      <exclude name="*Test" /> <!-- not working -->
+      <classespath>
+        <pathelement location="${bin}"/>
+      </classespath>
+  </jdepend>
+</target>
+
+<target name="jacoco" depends="vorher" >
+  <jacoco:report>
+    <executiondata>
+        <file file="jacoco.exec"/>
+    </executiondata>
+    <structure name="Java Algebra System Jacoco Report">
+        <classfiles>
+            <fileset dir="edu"/>
+        </classfiles>
+        <sourcefiles encoding="UTF-8">
+            <fileset dir="src"/>
+            <!--fileset dir="trc"/-->
+        </sourcefiles>
+    </structure>
+    <html destdir="report"/>        
+  </jacoco:report>
+</target>
+
+<target name="jar" depends="vorher" >
+  <jar jarfile="/tmp/jas-ant-${DSTAMP}.jar"  >
+     <fileset dir="." includes="**/*.java"  />
+     <fileset dir="." includes="**/*.html"  />
+     <fileset dir="." includes="*.py"  />
+     <fileset dir="." includes="examples/*.py"  />
+     <fileset dir="." includes="examples/*.rb"  />
+     <fileset dir="." includes="**/*.jas"  />
+     <fileset dir="." includes="build.xml Makefile log4j.properties"  />
+  </jar>
+</target>
+
+<target name="bin-jar" depends="vorher" >
+  <jar jarfile="jas-bin-${DSTAMP}.jar"
+       manifest="GBManifest.MF"
+  >
+    <fileset dir="." includes="**/*.class" />
+    <fileset dir="." includes="log4j.properties log4j2.properties"  />
+  </jar>
+</target>
+
+<target name="packmvn" depends="vorher,compile">
+  <!-- define artifacts' name, which follows the convention of Maven -->
+  <property name="pom-xml"     value="${artifactId}-${version}.pom" />
+  <property name="bin-jar"     value="${artifactId}-${version}.jar" />
+  <property name="javadoc-jar" value="${artifactId}-${version}-javadoc.jar" />
+  <property name="sources-jar" value="${artifactId}-${version}-sources.jar" />
+  <!-- copy/rename the bytecode jar -->
+  <property name="m2dist"      value="${tmpdist}/${version}" />
+  <mkdir dir="${m2dist}" />
+  <replace file="${dist}/pom.xml" token="@SVNREV@" value="${version}" />
+  <copy file="${dist}/pom.xml"                          tofile="${m2dist}/${pom-xml}" />
+  <copy file="${dist}/${artifactId}-${version}-bin.jar" tofile="${m2dist}/${bin-jar}" />
+  <copy file="${dist}/${artifactId}-${version}-doc.zip" tofile="${m2dist}/${javadoc-jar}" />
+  <copy file="${dist}/${artifactId}-${version}-src.zip" tofile="${m2dist}/${sources-jar}" />
+  <!-- sign the the pom and jars -->
+  <delete verbose="true" >
+     <fileset dir="${m2dist}"  includes="*.asc"  />
+     <fileset dir="${tmpdist}" includes="*bundle.jar"  />
+  </delete>
+  <exec executable="gpg" >
+     <arg value="-u C5283F53"/>
+     <arg value="-ab"/>
+     <arg value="${m2dist}/${pom-xml}"/>
+  </exec>
+  <exec executable="gpg" >
+     <arg value="-u C5283F53"/>
+     <arg value="-ab"/>
+     <arg value="${m2dist}/${bin-jar}"/>
+  </exec>
+  <exec executable="gpg" >
+     <arg value="-u C5283F53"/>
+     <arg value="-ab"/>
+     <arg value="${m2dist}/${javadoc-jar}"/>
+  </exec>
+  <exec executable="gpg" >
+     <arg value="-u C5283F53"/>
+     <arg value="-ab"/>
+     <arg value="${m2dist}/${sources-jar}"/>
+  </exec>
+  <!-- create bundle for upload, again -->
+  <jar jarfile="${tmpdist}/${artifactId}-${version}-bundle.jar"  >
+     <fileset dir="${m2dist}" includes="${pom-xml}"  />
+     <fileset dir="${m2dist}" includes="${bin-jar}"  />
+     <fileset dir="${m2dist}" includes="${javadoc-jar}"  />
+     <fileset dir="${m2dist}" includes="${sources-jar}"  />
+     <fileset dir="${m2dist}" includes="*.asc"  />
+  </jar>
+</target>
+
+<target name="clean" description="remove backup files">
+  <delete verbose="true" >
+    <fileset dir="${src}" defaultexcludes="no" includes="**/*~"  />
+    <fileset dir="${testsrc}" defaultexcludes="no" includes="**/*~"  />
+  </delete>
+</target>
+
+<target name="distclean" depends="clean" description="remove all class files">
+  <delete verbose="true" >
+    <fileset dir="${src}" includes="**/*.class"  />
+    <fileset dir="${testsrc}" includes="**/*.class"  />
+    <fileset dir="${build}" includes="**/*.class"  />
+  </delete>
+</target>
+
+<target name="resolve" description="retrieve dependencies with ivy">
+  <property name="ivy.lib.dir" value="${libs}"/>
+  <!--ivy:cleancache /-->
+  <ivy:retrieve />
+</target>
+
+<target name="publish" description="publish artifacts with ivy">
+  <echo message="publish is not working"  />
+  <ivy:resolve />
+  <ivy:publish 
+       forcedeliver="${ivy-publish.forcedeliver}"
+       overwrite="${ivy-publish.overwrite}" 
+       resolver="local">
+    <artifacts pattern="[artifact]-[revision].[ext]"/>
+  </ivy:publish>
+  <!--ivy:publish 
+       forcedeliver="${ivy-publish.forcedeliver}"
+       overwrite="${ivy-publish.overwrite}" 
+       resolver="local">
+    <artifacts pattern="[artifact]-[revision]-src.[ext]"/>
+  </ivy:publish-->
+</target>
+
+<!--artifacts pattern="${ivy-publish.artifacts.pattern}"/-->
+
+<target name="untabify" depends="vorher" >
+  <fixcrlf srcdir="${src}"
+       tab="remove"
+       tablength="8"
+       javafiles="yes"
+       includes="**/*.java" 
+  />
+  <fixcrlf srcdir="${testsrc}"
+       tab="remove"
+       tablength="8"
+       javafiles="yes"
+       includes="**/*.java" 
+  />
+  <fixcrlf srcdir="${mpisrc}"
+       tab="remove"
+       tablength="8"
+       javafiles="yes"
+       includes="**/*.java" 
+  />
+  <fixcrlf srcdir="${mpjsrc}"
+       tab="remove"
+       tablength="8"
+       javafiles="yes"
+       includes="**/*.java" 
+  />
+</target>
+
+<target name="sed-isdone" depends="vorher" >
+  <replace dir="${src}"
+       token="@param C coefficient"
+       value="@typeparam C coefficient"
+       summary="true"
+       >
+    <include name="**/*.java" /> 
+  </replace>
+</target>
+
+</project>
+
+
